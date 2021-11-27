@@ -9,38 +9,17 @@ import com.artesanoskuad.loginintento7.authentication.data.model.Usuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Usuario::class], version = 2)
+@Database(entities = [Usuario::class], version = 3)
 abstract class AuthenticationDatabase : RoomDatabase() {
 
     abstract fun usuarioDao(): UsuarioDao
-
-    private class AuthenticationDatabaseRoomCallback(
-        private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-            INSTANCE?.let {  database ->
-                scope.launch {
-                    val loginDao = database.usuarioDao()
-                    prePopulateDatabase(loginDao)
-                }
-            }
-        }
-
-        private fun prePopulateDatabase(usuarioDao: UsuarioDao) {
-            val goku = Usuario("goku", "Goku Super Sayajin", "goku")
-            val vegeta = Usuario("vegeta", "Vegeta Principe Sayajin", "vegeta")
-            val homero = Usuario("homero", "Homero Jay Sipmsons", "homero")
-            usuarioDao.insertAll(goku, vegeta, homero)
-        }
-    }
 
     companion object {
 
         @Volatile
         private var INSTANCE: AuthenticationDatabase? = null
 
-        fun getDatabase(context: Context, coroutineScope: CoroutineScope): AuthenticationDatabase {
+        fun getDatabase(context: Context): AuthenticationDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -50,7 +29,6 @@ abstract class AuthenticationDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(context.applicationContext,
                     AuthenticationDatabase::class.java,
                     "authentication_database")
-                    .addCallback(AuthenticationDatabaseRoomCallback(coroutineScope))
                     .allowMainThreadQueries()
                     .build()
                 INSTANCE = instance

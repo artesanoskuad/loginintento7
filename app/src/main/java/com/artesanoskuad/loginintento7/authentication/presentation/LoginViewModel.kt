@@ -12,7 +12,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val usuarioDao: UsuarioDao
 
     init {
-        val dataBase = AuthenticationDatabase.getDatabase(application, viewModelScope)
+        val dataBase = AuthenticationDatabase.getDatabase(application)
         usuarioDao = dataBase.usuarioDao()
     }
 
@@ -22,7 +22,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     fun login(usuario: String, password: String){
         viewModelScope.launch{
-            val findUser = usuarioDao.findUserByPassword(usuario, password).value
+            val findUser = usuarioDao.findUserByPassword(usuario, password)
             handleResponse(findUser)
         }
     }

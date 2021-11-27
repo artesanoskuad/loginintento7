@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.artesanoskuad.loginintento7.R
 import com.artesanoskuad.loginintento7.authentication.presentation.LoginViewModel
 import com.artesanoskuad.loginintento7.databinding.FragmentLoginBinding
 
@@ -46,6 +48,10 @@ class LoginFragment : Fragment() {
     private fun setupClickListener() {
         binding.btnLogin.setOnClickListener {
             loginViewModel.login(getUser(), getPassword())
+        }
+
+        binding.btnRegistro.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registroFragment)
         }
     }
 

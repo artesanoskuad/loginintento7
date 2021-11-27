@@ -11,9 +11,9 @@ interface UsuarioDao {
     @Insert
     fun insertAll(vararg usuario: Usuario)
 
-    @Query("SELECT * FROM usuario WHERE usuario = :usuario AND password = :password")
-    fun findUserByPassword(usuario: String, password: String) : LiveData<Usuario?>
+    @Query("SELECT * FROM usuario WHERE nombre = :nombre AND password = :password")
+    fun findUserByPassword(nombre: String, password: String): Usuario?
 
     @Query("SELECT * FROM usuario")
-    fun getAllUsers() : LiveData<List<Usuario>>
+    fun getAllUsers(): List<Usuario>
 }

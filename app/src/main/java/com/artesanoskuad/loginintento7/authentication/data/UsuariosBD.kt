@@ -17,7 +17,7 @@ object UsuariosBD {
     fun loginConUsuarioYPassword(user: String, password: String): Usuario? {
         var usuarioRetorno: Usuario? = null
         getUsuarios().forEach { usuario ->
-            if (usuario.password == password && usuario.usuario == user) {
+            if (usuario.password == password && usuario.nombre == user) {
                 usuarioRetorno = usuario
                 return@forEach
             }

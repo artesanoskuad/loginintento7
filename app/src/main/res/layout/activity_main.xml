@@ -10,7 +10,9 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.artesanoskuad.loginintento7.authentication.ui.LoginFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
         tools:layout="@layout/fragment_login"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
