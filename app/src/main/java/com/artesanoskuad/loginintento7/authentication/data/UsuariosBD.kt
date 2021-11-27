@@ -1,5 +1,8 @@
 package com.artesanoskuad.loginintento7.authentication.data
 
+import com.artesanoskuad.loginintento7.authentication.data.model.Usuario
+
+@Deprecated("Utilizar Room")
 object UsuariosBD {
 
     fun getUsuarios(): List<Usuario> {
@@ -12,7 +15,7 @@ object UsuariosBD {
     }
 
     fun loginConUsuarioYPassword(user: String, password: String): Usuario? {
-        var usuarioRetorno : Usuario? = null
+        var usuarioRetorno: Usuario? = null
         getUsuarios().forEach { usuario ->
             if (usuario.password == password && usuario.usuario == user) {
                 usuarioRetorno = usuario

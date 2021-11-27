@@ -9,44 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.artesanoskuad.loginintento7.authentication.presentation.LoginViewModel
 import com.artesanoskuad.loginintento7.databinding.FragmentLoginBinding
+import com.artesanoskuad.loginintento7.databinding.FragmentRegistroBinding
 
 
-class LoginFragment : Fragment() {
+class RegistroFragment : Fragment() {
 
-    private var rawBinding: FragmentLoginBinding? = null
+    private var rawBinding: FragmentRegistroBinding? = null
     private val binding get() = rawBinding!!
-    private val loginViewModel: LoginViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rawBinding = FragmentLoginBinding.inflate(inflater, container, false)
+        rawBinding = FragmentRegistroBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupClickListener()
-        setupViewModel()
-    }
-
-    private fun setupViewModel() {
-        loginViewModel.state().observe(this) {
-            it?.let { safeState ->
-                renderUI(safeState)
-            }
-        }
-    }
-
-    private fun renderUI(safeState: String) {
-        Toast.makeText(requireContext(), safeState, Toast.LENGTH_LONG).show()
-    }
-
-    private fun setupClickListener() {
-        binding.btnLogin.setOnClickListener {
-            loginViewModel.login(getUser(), getPassword())
-        }
     }
 
     private fun getUser() = binding.etUsuario.text.toString()

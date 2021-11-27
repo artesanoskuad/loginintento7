@@ -5,4 +5,7 @@
     <string name="ingresar_password">Ingresar password</string>
     <string name="ingresar_email">Ingresar email</string>
     <string name="ingresar">Ingresar</string>
+    <string name="registro">Registro usuario</string>
+    <string name="ingrese_nombre_completo">Ingrese nombre completo</string>
+    <string name="volver">Volver</string>
 </resources>
